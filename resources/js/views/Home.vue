@@ -1,9 +1,37 @@
 <template>
-  <login></login>
+<div>
+    <p>OK</p>
+    <router-view @authenticated="setAuthenticated" />
+</div>
+    
 </template>
-<style scoped>
-img{
-    max-width: 150px;
-    margin-bottom: 15px!important;
+<script>
+export default {
+    data() {
+            return {
+                authenticated: false,
+                mockAccount: {
+                    username: "nraboy",
+                    password: "password"
+                }
+            }
+        },
+        mounted() {
+            if(!this.authenticated) {
+                this.$router.push('/login');
+            }
+        },
+        methods: {
+            setAuthenticated(status) {
+                this.authenticated = status;
+            },
+            logout() {
+                this.authenticated = false;
+            }
+        }
 }
+</script>
+
+<style scoped>
+
 </style>

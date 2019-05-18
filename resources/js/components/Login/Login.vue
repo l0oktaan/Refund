@@ -28,10 +28,10 @@
                     </b-row>                 
                     <b-row>
                         <b-col class="text-center align-bottom">
-                            <b-button variant="primary" @click="state='password'">เข้าสู่ระบบ</b-button>
-                        </b-col>
-                        
+                            <b-button variant="primary" @click="checkUser">เข้าสู่ระบบ</b-button>
+                        </b-col>                        
                     </b-row>
+                    
                 </b-form>
                 </div>
                 <div class="animated fadeIn">
@@ -47,12 +47,24 @@
                     </b-row>                 
                     <b-row>
                         <b-col class="text-center align-bottom">
-                            <b-button variant="primary" @click="state='username'" >เข้าสู่ระบบ</b-button>
+                            <b-button variant="primary" @click="checkPassword" >เข้าสู่ระบบ</b-button>
                         </b-col>
                         
                     </b-row>
                 </b-form>
                 </div>
+                <div class="alertBox">
+                    <b-alert
+                        :show="dismissCountDown"
+                        dismissible
+                        fade
+                        variant="danger"
+                        @dismiss-count-down="countDownChanged"
+                        >
+                        {{alertMessage}}
+                    </b-alert>
+                </div>
+                
               </b-card-body>
             </b-card>            
           </b-card-group>
@@ -66,8 +78,33 @@
 export default {
     data(){
         return {
-            state: 'username'
+            state: 'username',
+            showAlert: false,
+            alertMessage: '',
+            dismissSecs: 3,
+            dismissCountDown: 0,
         }
+    },
+    methods: {
+        checkUser(){
+            this.state = 'password';
+            
+            this.dismissCountDown = this.dismissSecs
+            this.alertMessage = 'ไม่พบชื่อผู้ใช้ระบบ!!!'
+            this.$emit("authenticated", true);
+        },
+        checkPassword(){
+            this.state = 'username';
+            
+            this.dismissCountDown = this.dismissSecs
+            this.alertMessage = 'รหัสผ่านไม่ถูกต้อง!!!'
+            this.$emit("authenticated", true);
+            this.$router.push('/refund');
+        },
+        countDownChanged(dismissCountDown) {
+            this.dismissCountDown = dismissCountDown
+        },
+
     }
 }
 </script>
@@ -76,5 +113,8 @@ export default {
 img{
     max-width: 150px;
     margin-bottom: 15px!important;
+}
+.alertBox{
+    margin-top: 15px;
 }
 </style>

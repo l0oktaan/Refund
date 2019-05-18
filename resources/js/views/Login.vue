@@ -1,3 +1,3 @@
 <template>
-  <login></login>
+  <my-login></my-login>
 </template>

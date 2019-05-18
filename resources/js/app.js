@@ -43,6 +43,8 @@ Vue.use(Vuelidate)
 
 import App from './views/App.vue'
 import Home from './views/Home.vue'
+import Login from './views/Login.vue'
+import Refund from './views/Refund.vue'
 import Admin from './views/Admin/Admin'
 import AdminIndex from './views/Admin/AdminIndex'
 
@@ -57,6 +59,20 @@ const router = new VueRouter({
             component: Home,
             meta: {
                 breadCrumb: 'หน้าหลัก' //crumb
+            }
+        },
+        {
+            path: '/login',
+            component: Login,
+            meta: {
+                breadCrumb: 'เข้าสู่ระบบ' //crumb
+            }
+        },
+        {
+            path: '/refund',
+            component: Refund,
+            meta: {
+                breadCrumb: 'หน้าแรก' //crumb
             }
         },
         {
@@ -115,8 +131,8 @@ Vue.component('FormRule', FormRule).defaults;
 import MyAlert from './components/MyAlert.vue';
 Vue.component('MyAlert', MyAlert).default;
 
-import Login from './components/Login/Login.vue';
-Vue.component('Login', Login).default;
+import MyLogin from './components/Login/Login.vue';
+Vue.component('MyLogin', MyLogin).default;
 
 
 const app = new Vue({
