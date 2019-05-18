@@ -115,6 +115,10 @@ Vue.component('FormRule', FormRule).defaults;
 import MyAlert from './components/MyAlert.vue';
 Vue.component('MyAlert', MyAlert).default;
 
+import Login from './components/Login/Login.vue';
+Vue.component('Login', Login).default;
+
+
 const app = new Vue({
     el: '#app',
     components: { App },
