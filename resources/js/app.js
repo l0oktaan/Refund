@@ -45,6 +45,8 @@ import App from './views/App.vue'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import Refund from './views/Refund.vue'
+import Office from './views/Office.vue'
+import RefundForm from './views/RefundForm.vue'
 import Admin from './views/Admin/Admin'
 import AdminIndex from './views/Admin/AdminIndex'
 
@@ -73,7 +75,23 @@ const router = new VueRouter({
             component: Refund,
             meta: {
                 breadCrumb: 'หน้าแรก' //crumb
-            }
+            },
+            children: [
+                {
+                    path: 'form',
+                    component: RefundForm,
+                    meta: {
+                        breadCrumb: 'แบบถอนคืนฯ' //crumb
+                    }
+                },
+                {
+                    path: 'office',
+                    component: Office,
+                    meta: {
+                        breadCrumb: 'ข้อมูลหน่วยงาน' //crumb
+                    }
+                },
+            ]
         },
         {
             path: '/admin',

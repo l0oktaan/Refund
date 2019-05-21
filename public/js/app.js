@@ -5402,6 +5402,104 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Refund/RefundMenu.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Refund/RefundMenu.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      leftMenu: [{
+        menu: 'Dashboard',
+        path: '/refund',
+        icon: 'fas fa-globe'
+      }, {
+        menu: 'ข้อมูลหน่วยงาน',
+        path: '/refund/office',
+        icon: 'fa fa-university'
+      }, {
+        menu: 'การถอนคืนฯ',
+        path: '/refund/form',
+        icon: 'fa fa-align-justify'
+      }]
+    };
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Refund/RefundNav.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Refund/RefundNav.vue?vue&type=script&lang=js& ***!
@@ -70598,20 +70696,16 @@ var render = function() {
           _c(
             "b-nav",
             { attrs: { vertical: "" } },
-            [
-              _c("b-nav-item", { attrs: { to: "/admin" } }, [
-                _c("i", { staticClass: "fas fa-globe" }),
-                _vm._v(" Dashboard")
-              ]),
-              _vm._v(" "),
-              _c("b-nav-item", { attrs: { to: "/admin/form" } }, [
-                _c("i", {
-                  staticClass: "fa fa-align-justify",
-                  attrs: { "aria-hidden": "true" }
-                }),
-                _vm._v(" จัดการแบบฟอร์ม")
-              ])
-            ],
+            _vm._l(_vm.leftMenu, function(lMenu, index) {
+              return _c(
+                "b-nav-item",
+                { key: index, attrs: { to: lMenu.path } },
+                [
+                  _c("i", { class: lMenu.icon }),
+                  _vm._v(" " + _vm._s(lMenu.menu))
+                ]
+              )
+            }),
             1
           ),
           _vm._v(" "),
@@ -70635,7 +70729,7 @@ var staticRenderFns = [
         { staticClass: "nav-link  nav-dropdown-toggle ", attrs: { href: "#" } },
         [
           _vm._v(
-            "\n                                    เริ่มต้น\n                                    "
+            "\n                               เริ่มต้น\n                               "
           )
         ]
       ),
@@ -70650,7 +70744,7 @@ var staticRenderFns = [
             },
             [
               _vm._v(
-                "\n                                            UI Kit\n                                            "
+                "\n                                       UI Kit\n                                       "
               )
             ]
           )
@@ -70667,7 +70761,7 @@ var staticRenderFns = [
             },
             [
               _vm._v(
-                "\n                                            Introduction\n                                            "
+                "\n                                       Introduction\n                                       "
               )
             ]
           )
@@ -70684,7 +70778,7 @@ var staticRenderFns = [
             },
             [
               _vm._v(
-                "\n                                            Browsers & devices\n                                            "
+                "\n                                       Browsers & devices\n                                       "
               )
             ]
           )
@@ -70701,7 +70795,7 @@ var staticRenderFns = [
             },
             [
               _vm._v(
-                "\n                                            JavaScript\n                                            "
+                "\n                                       JavaScript\n                                       "
               )
             ]
           )
@@ -70718,7 +70812,7 @@ var staticRenderFns = [
             },
             [
               _vm._v(
-                "\n                                            Build tools\n                                            "
+                "\n                                       Build tools\n                                       "
               )
             ]
           )
@@ -70733,7 +70827,7 @@ var staticRenderFns = [
             },
             [
               _vm._v(
-                "\n                                            Webpack\n                                            "
+                "\n                                       Webpack\n                                       "
               )
             ]
           )
@@ -70750,7 +70844,7 @@ var staticRenderFns = [
             },
             [
               _vm._v(
-                "\n                                            Accessibility\n                                            "
+                "\n                                       Accessibility\n                                       "
               )
             ]
           )
@@ -70789,7 +70883,7 @@ var staticRenderFns = [
         },
         [
           _c("i", { staticClass: "nav-icon cui-layers" }),
-          _vm._v(" Try CoreUI\n                                    "),
+          _vm._v(" Try CoreUI\n                           "),
           _c("strong", [_vm._v("PRO")])
         ]
       )
@@ -72575,6 +72669,30 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Office.vue?vue&type=template&id=7a663a9b&":
+/*!****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Office.vue?vue&type=template&id=7a663a9b& ***!
+  \****************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("h3", [_vm._v("Office")])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Refund.vue?vue&type=template&id=50801d57&":
 /*!****************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Refund.vue?vue&type=template&id=50801d57& ***!
@@ -72655,6 +72773,30 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/RefundForm.vue?vue&type=template&id=17a5d68a&":
+/*!********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/RefundForm.vue?vue&type=template&id=17a5d68a& ***!
+  \********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("h4", [_vm._v("การถอนคืน")])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -91053,24 +91195,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_Home_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./views/Home.vue */ "./resources/js/views/Home.vue");
 /* harmony import */ var _views_Login_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./views/Login.vue */ "./resources/js/views/Login.vue");
 /* harmony import */ var _views_Refund_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./views/Refund.vue */ "./resources/js/views/Refund.vue");
-/* harmony import */ var _views_Admin_Admin__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./views/Admin/Admin */ "./resources/js/views/Admin/Admin.vue");
-/* harmony import */ var _views_Admin_AdminIndex__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./views/Admin/AdminIndex */ "./resources/js/views/Admin/AdminIndex.vue");
-/* harmony import */ var _views_Admin_Form_FormIndex__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./views/Admin/Form/FormIndex */ "./resources/js/views/Admin/Form/FormIndex.vue");
-/* harmony import */ var _components_Admin_AdminNav_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/Admin/AdminNav.vue */ "./resources/js/components/Admin/AdminNav.vue");
-/* harmony import */ var _components_Admin_AdminMenu_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/Admin/AdminMenu.vue */ "./resources/js/components/Admin/AdminMenu.vue");
-/* harmony import */ var _components_Admin_AdminBreadcrumb_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/Admin/AdminBreadcrumb.vue */ "./resources/js/components/Admin/AdminBreadcrumb.vue");
-/* harmony import */ var _components_Admin_AdminSide_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/Admin/AdminSide.vue */ "./resources/js/components/Admin/AdminSide.vue");
-/* harmony import */ var _components_Admin_Form_FormFind_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/Admin/Form/FormFind.vue */ "./resources/js/components/Admin/Form/FormFind.vue");
-/* harmony import */ var _components_Admin_Form_FormCover_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/Admin/Form/FormCover.vue */ "./resources/js/components/Admin/Form/FormCover.vue");
-/* harmony import */ var _components_Admin_Form_FormDetail_vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/Admin/Form/FormDetail.vue */ "./resources/js/components/Admin/Form/FormDetail.vue");
-/* harmony import */ var _components_Admin_Form_FormRuleList_vue__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/Admin/Form/FormRuleList.vue */ "./resources/js/components/Admin/Form/FormRuleList.vue");
-/* harmony import */ var _components_Admin_Form_FormRule_vue__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/Admin/Form/FormRule.vue */ "./resources/js/components/Admin/Form/FormRule.vue");
-/* harmony import */ var _components_MyAlert_vue__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/MyAlert.vue */ "./resources/js/components/MyAlert.vue");
-/* harmony import */ var _components_Login_Login_vue__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/Login/Login.vue */ "./resources/js/components/Login/Login.vue");
-/* harmony import */ var _components_Refund_RefundNav_vue__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/Refund/RefundNav.vue */ "./resources/js/components/Refund/RefundNav.vue");
-/* harmony import */ var _components_Refund_RefundMenu_vue__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/Refund/RefundMenu.vue */ "./resources/js/components/Refund/RefundMenu.vue");
-/* harmony import */ var _components_Refund_RefundBreadcrumb_vue__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/Refund/RefundBreadcrumb.vue */ "./resources/js/components/Refund/RefundBreadcrumb.vue");
-/* harmony import */ var _components_Refund_RefundSide_vue__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./components/Refund/RefundSide.vue */ "./resources/js/components/Refund/RefundSide.vue");
+/* harmony import */ var _views_Office_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./views/Office.vue */ "./resources/js/views/Office.vue");
+/* harmony import */ var _views_RefundForm_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./views/RefundForm.vue */ "./resources/js/views/RefundForm.vue");
+/* harmony import */ var _views_Admin_Admin__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./views/Admin/Admin */ "./resources/js/views/Admin/Admin.vue");
+/* harmony import */ var _views_Admin_AdminIndex__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./views/Admin/AdminIndex */ "./resources/js/views/Admin/AdminIndex.vue");
+/* harmony import */ var _views_Admin_Form_FormIndex__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./views/Admin/Form/FormIndex */ "./resources/js/views/Admin/Form/FormIndex.vue");
+/* harmony import */ var _components_Admin_AdminNav_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/Admin/AdminNav.vue */ "./resources/js/components/Admin/AdminNav.vue");
+/* harmony import */ var _components_Admin_AdminMenu_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/Admin/AdminMenu.vue */ "./resources/js/components/Admin/AdminMenu.vue");
+/* harmony import */ var _components_Admin_AdminBreadcrumb_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/Admin/AdminBreadcrumb.vue */ "./resources/js/components/Admin/AdminBreadcrumb.vue");
+/* harmony import */ var _components_Admin_AdminSide_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/Admin/AdminSide.vue */ "./resources/js/components/Admin/AdminSide.vue");
+/* harmony import */ var _components_Admin_Form_FormFind_vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/Admin/Form/FormFind.vue */ "./resources/js/components/Admin/Form/FormFind.vue");
+/* harmony import */ var _components_Admin_Form_FormCover_vue__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/Admin/Form/FormCover.vue */ "./resources/js/components/Admin/Form/FormCover.vue");
+/* harmony import */ var _components_Admin_Form_FormDetail_vue__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/Admin/Form/FormDetail.vue */ "./resources/js/components/Admin/Form/FormDetail.vue");
+/* harmony import */ var _components_Admin_Form_FormRuleList_vue__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/Admin/Form/FormRuleList.vue */ "./resources/js/components/Admin/Form/FormRuleList.vue");
+/* harmony import */ var _components_Admin_Form_FormRule_vue__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/Admin/Form/FormRule.vue */ "./resources/js/components/Admin/Form/FormRule.vue");
+/* harmony import */ var _components_MyAlert_vue__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/MyAlert.vue */ "./resources/js/components/MyAlert.vue");
+/* harmony import */ var _components_Login_Login_vue__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/Login/Login.vue */ "./resources/js/components/Login/Login.vue");
+/* harmony import */ var _components_Refund_RefundNav_vue__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/Refund/RefundNav.vue */ "./resources/js/components/Refund/RefundNav.vue");
+/* harmony import */ var _components_Refund_RefundMenu_vue__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./components/Refund/RefundMenu.vue */ "./resources/js/components/Refund/RefundMenu.vue");
+/* harmony import */ var _components_Refund_RefundBreadcrumb_vue__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./components/Refund/RefundBreadcrumb.vue */ "./resources/js/components/Refund/RefundBreadcrumb.vue");
+/* harmony import */ var _components_Refund_RefundSide_vue__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./components/Refund/RefundSide.vue */ "./resources/js/components/Refund/RefundSide.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -91108,6 +91252,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuelidate__WEBPACK_IMPORTED_MODUL
 
 
 
+
+
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
   base: '/',
@@ -91131,10 +91277,25 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     meta: {
       breadCrumb: 'หน้าแรก' //crumb
 
-    }
+    },
+    children: [{
+      path: 'form',
+      component: _views_RefundForm_vue__WEBPACK_IMPORTED_MODULE_14__["default"],
+      meta: {
+        breadCrumb: 'แบบถอนคืนฯ' //crumb
+
+      }
+    }, {
+      path: 'office',
+      component: _views_Office_vue__WEBPACK_IMPORTED_MODULE_13__["default"],
+      meta: {
+        breadCrumb: 'ข้อมูลหน่วยงาน' //crumb
+
+      }
+    }]
   }, {
     path: '/admin',
-    component: _views_Admin_Admin__WEBPACK_IMPORTED_MODULE_13__["default"],
+    component: _views_Admin_Admin__WEBPACK_IMPORTED_MODULE_15__["default"],
     mode: 'history',
     meta: {
       breadCrumb: 'Dashboard' //crumb
@@ -91142,14 +91303,14 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     },
     children: [{
       path: '',
-      component: _views_Admin_AdminIndex__WEBPACK_IMPORTED_MODULE_14__["default"],
+      component: _views_Admin_AdminIndex__WEBPACK_IMPORTED_MODULE_16__["default"],
       meta: {
         breadCrumb: 'Admin' //crumb
 
       }
     }, {
       path: 'form',
-      component: _views_Admin_Form_FormIndex__WEBPACK_IMPORTED_MODULE_15__["default"],
+      component: _views_Admin_Form_FormIndex__WEBPACK_IMPORTED_MODULE_17__["default"],
       meta: {
         breadCrumb: 'จัดการแบบฟอร์ม' //crumb
 
@@ -91158,36 +91319,36 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }]
 });
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('AdminNav', _components_Admin_AdminNav_vue__WEBPACK_IMPORTED_MODULE_16__["default"]).defaults;
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('AdminNav', _components_Admin_AdminNav_vue__WEBPACK_IMPORTED_MODULE_18__["default"]).defaults;
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('AdminMenu', _components_Admin_AdminMenu_vue__WEBPACK_IMPORTED_MODULE_17__["default"]).defaults;
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('AdminMenu', _components_Admin_AdminMenu_vue__WEBPACK_IMPORTED_MODULE_19__["default"]).defaults;
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('AdminBreadcrumb', _components_Admin_AdminBreadcrumb_vue__WEBPACK_IMPORTED_MODULE_18__["default"]).defaults;
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('AdminBreadcrumb', _components_Admin_AdminBreadcrumb_vue__WEBPACK_IMPORTED_MODULE_20__["default"]).defaults;
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('AdminSide', _components_Admin_AdminSide_vue__WEBPACK_IMPORTED_MODULE_19__["default"]).defaults;
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('AdminSide', _components_Admin_AdminSide_vue__WEBPACK_IMPORTED_MODULE_21__["default"]).defaults;
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('FormFind', _components_Admin_Form_FormFind_vue__WEBPACK_IMPORTED_MODULE_20__["default"]).defaults;
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('FormFind', _components_Admin_Form_FormFind_vue__WEBPACK_IMPORTED_MODULE_22__["default"]).defaults;
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('FormCover', _components_Admin_Form_FormCover_vue__WEBPACK_IMPORTED_MODULE_21__["default"]).defaults;
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('FormCover', _components_Admin_Form_FormCover_vue__WEBPACK_IMPORTED_MODULE_23__["default"]).defaults;
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('FormDetail', _components_Admin_Form_FormDetail_vue__WEBPACK_IMPORTED_MODULE_22__["default"]).defaults;
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('FormDetail', _components_Admin_Form_FormDetail_vue__WEBPACK_IMPORTED_MODULE_24__["default"]).defaults;
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('FormRuleList', _components_Admin_Form_FormRuleList_vue__WEBPACK_IMPORTED_MODULE_23__["default"]).defaults;
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('FormRuleList', _components_Admin_Form_FormRuleList_vue__WEBPACK_IMPORTED_MODULE_25__["default"]).defaults;
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('FormRule', _components_Admin_Form_FormRule_vue__WEBPACK_IMPORTED_MODULE_24__["default"]).defaults;
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('FormRule', _components_Admin_Form_FormRule_vue__WEBPACK_IMPORTED_MODULE_26__["default"]).defaults;
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('MyAlert', _components_MyAlert_vue__WEBPACK_IMPORTED_MODULE_25__["default"])["default"];
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('MyAlert', _components_MyAlert_vue__WEBPACK_IMPORTED_MODULE_27__["default"])["default"];
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('MyLogin', _components_Login_Login_vue__WEBPACK_IMPORTED_MODULE_26__["default"])["default"]; //***********************Refund************************* */
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('MyLogin', _components_Login_Login_vue__WEBPACK_IMPORTED_MODULE_28__["default"])["default"]; //***********************Refund************************* */
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('RefundNav', _components_Refund_RefundNav_vue__WEBPACK_IMPORTED_MODULE_27__["default"]).defaults;
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('RefundNav', _components_Refund_RefundNav_vue__WEBPACK_IMPORTED_MODULE_29__["default"]).defaults;
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('RefundMenu', _components_Refund_RefundMenu_vue__WEBPACK_IMPORTED_MODULE_28__["default"]).defaults;
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('RefundMenu', _components_Refund_RefundMenu_vue__WEBPACK_IMPORTED_MODULE_30__["default"]).defaults;
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('RefundBreadcrumb', _components_Refund_RefundBreadcrumb_vue__WEBPACK_IMPORTED_MODULE_29__["default"]).defaults;
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('RefundBreadcrumb', _components_Refund_RefundBreadcrumb_vue__WEBPACK_IMPORTED_MODULE_31__["default"]).defaults;
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('RefundSide', _components_Refund_RefundSide_vue__WEBPACK_IMPORTED_MODULE_30__["default"]).defaults;
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('RefundSide', _components_Refund_RefundSide_vue__WEBPACK_IMPORTED_MODULE_32__["default"]).defaults;
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
   components: {
@@ -92172,15 +92333,17 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _RefundMenu_vue_vue_type_template_id_427cf633_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RefundMenu.vue?vue&type=template&id=427cf633&scoped=true& */ "./resources/js/components/Refund/RefundMenu.vue?vue&type=template&id=427cf633&scoped=true&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _RefundMenu_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RefundMenu.vue?vue&type=script&lang=js& */ "./resources/js/components/Refund/RefundMenu.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _RefundMenu_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _RefundMenu_vue_vue_type_template_id_427cf633_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
   _RefundMenu_vue_vue_type_template_id_427cf633_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
@@ -92194,6 +92357,20 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 if (false) { var api; }
 component.options.__file = "resources/js/components/Refund/RefundMenu.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Refund/RefundMenu.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/Refund/RefundMenu.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RefundMenu_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./RefundMenu.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Refund/RefundMenu.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RefundMenu_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -92756,6 +92933,59 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/views/Office.vue":
+/*!***************************************!*\
+  !*** ./resources/js/views/Office.vue ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Office_vue_vue_type_template_id_7a663a9b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Office.vue?vue&type=template&id=7a663a9b& */ "./resources/js/views/Office.vue?vue&type=template&id=7a663a9b&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
+  _Office_vue_vue_type_template_id_7a663a9b___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Office_vue_vue_type_template_id_7a663a9b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/Office.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/Office.vue?vue&type=template&id=7a663a9b&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/views/Office.vue?vue&type=template&id=7a663a9b& ***!
+  \**********************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Office_vue_vue_type_template_id_7a663a9b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Office.vue?vue&type=template&id=7a663a9b& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Office.vue?vue&type=template&id=7a663a9b&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Office_vue_vue_type_template_id_7a663a9b___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Office_vue_vue_type_template_id_7a663a9b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/views/Refund.vue":
 /*!***************************************!*\
   !*** ./resources/js/views/Refund.vue ***!
@@ -92823,6 +93053,59 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Refund_vue_vue_type_template_id_50801d57___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Refund_vue_vue_type_template_id_50801d57___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/views/RefundForm.vue":
+/*!*******************************************!*\
+  !*** ./resources/js/views/RefundForm.vue ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _RefundForm_vue_vue_type_template_id_17a5d68a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RefundForm.vue?vue&type=template&id=17a5d68a& */ "./resources/js/views/RefundForm.vue?vue&type=template&id=17a5d68a&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
+  _RefundForm_vue_vue_type_template_id_17a5d68a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _RefundForm_vue_vue_type_template_id_17a5d68a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/RefundForm.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/RefundForm.vue?vue&type=template&id=17a5d68a&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/views/RefundForm.vue?vue&type=template&id=17a5d68a& ***!
+  \**************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RefundForm_vue_vue_type_template_id_17a5d68a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./RefundForm.vue?vue&type=template&id=17a5d68a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/RefundForm.vue?vue&type=template&id=17a5d68a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RefundForm_vue_vue_type_template_id_17a5d68a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RefundForm_vue_vue_type_template_id_17a5d68a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

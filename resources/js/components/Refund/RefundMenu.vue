@@ -46,12 +46,8 @@
                             </ul>
                         </li>
                         <b-nav vertical>
-                            <b-nav-item  to="/admin"><i class="fas fa-globe"></i>&nbsp;Dashboard</b-nav-item>
-
-
-
-                            <b-nav-item  to="/admin/form"><i class="fa fa-align-justify" aria-hidden="true"></i>&nbsp;จัดการแบบฟอร์ม</b-nav-item>
-</b-nav>
+                            <b-nav-item v-for="(lMenu,index) in leftMenu" :key="index"  :to="lMenu.path"><i :class="lMenu.icon"></i>&nbsp;{{lMenu.menu}}</b-nav-item>                            
+                        </b-nav>
 
 
                         <li class="nav-item mt-auto">
@@ -60,15 +56,29 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link nav-link-danger" href="https://coreui.io/pro/" target="_top">
-                                    <i class="nav-icon cui-layers"></i> Try CoreUI
-                                    <strong>PRO</strong>
-                                    </a>
+                                <i class="nav-icon cui-layers"></i> Try CoreUI
+                                <strong>PRO</strong>
+                            </a>
                         </li>
                     </ul>
                 </nav>
             </div>
 
 </template>
+<script>
+export default {
+    data(){
+        return {
+            leftMenu: [
+                {menu: 'Dashboard', path: '/refund', icon: 'fas fa-globe'}, 
+                {menu: 'ข้อมูลหน่วยงาน', path: '/refund/office', icon: 'fa fa-university'},                 
+                {menu: 'การถอนคืนฯ', path: '/refund/form', icon: 'fa fa-align-justify'},
+            ]
+        }
+    }
+}
+</script>
+
 <style scoped>
 
 
