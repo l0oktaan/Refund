@@ -34185,7 +34185,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.btn[data-v-18c7c4ad]{\r\n    padding-top: 15px!important;\r\n    padding-bottom: 15px!important;\n}\ni[data-v-18c7c4ad]{\r\n    vertical-align: middle!important;\n}\r\n", ""]);
+exports.push([module.i, "\n.btn[data-v-18c7c4ad]{\n    padding-top: 15px!important;\n    padding-bottom: 15px!important;\n}\ni[data-v-18c7c4ad]{\n    vertical-align: middle!important;\n}\n", ""]);
 
 // exports
 
@@ -34261,7 +34261,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.swal-title[data-v-58494f16]{\r\n  font-size: 0.8em!important;\n}\r\n", ""]);
+exports.push([module.i, "\n.swal-title[data-v-58494f16]{\n  font-size: 0.8em!important;\n}\n", ""]);
 
 // exports
 
@@ -67785,7 +67785,7 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
                 _c("div", { staticClass: "small mb-1" }, [
-                  _vm._v("Upgrade NPM & Bower\r\n                            "),
+                  _vm._v("Upgrade NPM & Bower\n                            "),
                   _c("span", { staticClass: "float-right" }, [
                     _c("strong", [_vm._v("0%")])
                   ])
@@ -67807,7 +67807,7 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
                 _c("div", { staticClass: "small mb-1" }, [
-                  _vm._v("ReactJS Version\r\n                            "),
+                  _vm._v("ReactJS Version\n                            "),
                   _c("span", { staticClass: "float-right" }, [
                     _c("strong", [_vm._v("25%")])
                   ])
@@ -67829,7 +67829,7 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
                 _c("div", { staticClass: "small mb-1" }, [
-                  _vm._v("VueJS Version\r\n                            "),
+                  _vm._v("VueJS Version\n                            "),
                   _c("span", { staticClass: "float-right" }, [
                     _c("strong", [_vm._v("50%")])
                   ])
@@ -67851,7 +67851,7 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
                 _c("div", { staticClass: "small mb-1" }, [
-                  _vm._v("Add new layouts\r\n                            "),
+                  _vm._v("Add new layouts\n                            "),
                   _c("span", { staticClass: "float-right" }, [
                     _c("strong", [_vm._v("75%")])
                   ])
@@ -67873,9 +67873,7 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
                 _c("div", { staticClass: "small mb-1" }, [
-                  _vm._v(
-                    "Angular 2 Cli Version\r\n                            "
-                  ),
+                  _vm._v("Angular 2 Cli Version\n                            "),
                   _c("span", { staticClass: "float-right" }, [
                     _c("strong", [_vm._v("100%")])
                   ])
@@ -68145,25 +68143,25 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
               _c("i", { staticClass: "fa fa-bell-o" }),
-              _vm._v(" Updates\r\n                "),
+              _vm._v(" Updates\n                "),
               _c("span", { staticClass: "badge badge-info" }, [_vm._v("42")])
             ]),
             _vm._v(" "),
             _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
               _c("i", { staticClass: "fa fa-envelope-o" }),
-              _vm._v(" Messages\r\n                "),
+              _vm._v(" Messages\n                "),
               _c("span", { staticClass: "badge badge-success" }, [_vm._v("42")])
             ]),
             _vm._v(" "),
             _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
               _c("i", { staticClass: "fa fa-tasks" }),
-              _vm._v(" Tasks\r\n                "),
+              _vm._v(" Tasks\n                "),
               _c("span", { staticClass: "badge badge-danger" }, [_vm._v("42")])
             ]),
             _vm._v(" "),
             _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
               _c("i", { staticClass: "fa fa-comments" }),
-              _vm._v(" Comments\r\n                "),
+              _vm._v(" Comments\n                "),
               _c("span", { staticClass: "badge badge-warning" }, [_vm._v("42")])
             ]),
             _vm._v(" "),
@@ -68183,13 +68181,13 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
               _c("i", { staticClass: "fa fa-usd" }),
-              _vm._v(" Payments\r\n                    "),
+              _vm._v(" Payments\n                    "),
               _c("span", { staticClass: "badge badge-dark" }, [_vm._v("42")])
             ]),
             _vm._v(" "),
             _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
               _c("i", { staticClass: "fa fa-file" }),
-              _vm._v(" Projects\r\n                    "),
+              _vm._v(" Projects\n                    "),
               _c("span", { staticClass: "badge badge-primary" }, [_vm._v("42")])
             ]),
             _vm._v(" "),
@@ -90417,8 +90415,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\dev\laravel\refund\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\dev\laravel\refund\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\code\laravel\refund\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\code\laravel\refund\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
