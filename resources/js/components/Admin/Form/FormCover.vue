@@ -73,6 +73,7 @@ export default {
             //this.$root.$emit('onShowForm');
             //this.$root.$emit('bv::show::modal', 'modalForm');
             this.$emit('onShowForm',this.form_id);
+            //this.$router.push('forms/' + this.form_id)  ;
         },
         delForm(){
             this.$swal({

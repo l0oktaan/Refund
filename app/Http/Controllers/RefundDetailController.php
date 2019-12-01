@@ -82,6 +82,7 @@ class RefundDetailController extends Controller
                     if ($request->state == "new"){
                         $detail = new RefundDetail;
                         $detail->consider_id = $data[$i]['consider_id'];
+                        $detail->result_type = $data[$i]['result_type'];
                         $detail->value = $data[$i]['value'];
                         $detail->status = $data[$i]['status'];
                         $refund_form->refund_details()->save($detail);

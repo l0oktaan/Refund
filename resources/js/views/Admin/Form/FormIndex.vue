@@ -1,7 +1,7 @@
 <template>
     <div class="animated fadeIn">
         <div class="text-right">
-            <b-button variant="outline-success" @click="showForm(0)">
+            <b-button variant="outline-success" @click="showForm('add')">
                 <i class="fas fa-plus-circle fa-2x"></i>&nbsp;<span>เพิ่มแบบฟอร์ม</span>
             </b-button>
             <b-button variant="outline-primary">
@@ -59,9 +59,10 @@ export default {
     },
     methods: {
         showForm(id){
-            console.log('show :' + id);
-            this.form_id = id;
-            this.$refs['modalForm'].show();
+            //console.log('show :' + id);
+            //this.form_id = id;
+            //this.$refs['modalForm'].show();
+            this.$router.push({name: 'edit',params: { id: id }})  ;
         },
         resetModalForm(){
             this.form_id = -1;
@@ -72,6 +73,7 @@ export default {
             .then(response=>{
                 this.forms = response.data.data;
                 this.fCount = this.forms.length;
+                this.$store.commit('SET_FORMS',this.forms);
                 console.log(this.forms);
             })
         }

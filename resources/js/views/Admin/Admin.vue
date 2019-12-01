@@ -5,7 +5,8 @@
             <admin-menu></admin-menu>
 
             <main class="main">
-                <admin-breadcrumb></admin-breadcrumb>
+                
+                <breadcrumbs/>
                 <div class="container-fluid">
                     <div class="animated fadeIn">
                     <!--  @yield('content') -->

@@ -157,8 +157,7 @@ export default {
 
         },
         editRule(){
-            this.$emit('editRule',{id: this.rule.id, sub_of: this.rule.sub_of});
-
+            this.$emit('editRule',this.rule);
         },
         editSubRule(id,sub_of){
             this.$emit('editRule',{id: id, sub_of: sub_of});

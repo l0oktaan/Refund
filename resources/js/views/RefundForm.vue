@@ -206,14 +206,14 @@ export default {
                 for (let j=0; j < arr_consider.length; j++){
                     arr_detail.push({
                         'consider_id': arr_consider[j].id,
-                        'result' : this.checkResultType(arr_consider[j].type ,arr_consider[j].oper),
+                        'result_type' : this.checkResultType(arr_consider[j].type ,arr_consider[j].oper),
                         'value': this.checkConsidetType(arr_consider[j].type ,arr_consider[j].oper),
                         'status': 0
                     });
                 }
             }
             if (arr_detail.length > 0){
-
+                console.log('refund_detail :' + arr_detail.length);
                 axios.post(`${path}`,{
                     state : 'new',
                     detail : arr_detail

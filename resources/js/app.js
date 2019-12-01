@@ -13,7 +13,9 @@ window.Vue = require('vue');
 
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import VueBreadcrumbs from 'vue-2-breadcrumbs';
 Vue.use(VueRouter)
+Vue.use(VueBreadcrumbs);
 
 import $ from 'jquery';
 window.$ = window.jQuery = $;
@@ -41,7 +43,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import Vuex from 'vuex'
 Vue.use(Vuex)
-
+import createPersistedState from "vuex-persistedstate";
+Vue.use(Vuex)
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 //axios.defaults.baseURL = 'http://sajjainfo.com';
@@ -100,6 +103,8 @@ import Admin from './views/Admin/Admin'
 import AdminIndex from './views/Admin/AdminIndex'
 
 import FormIndex from './views/Admin/Form/FormIndex'
+import FormEdit from './views/Admin/Form/FormEdit'
+import Form from './views/Admin/Form/Form'
 
 const router = new VueRouter({
     mode: 'history',
@@ -194,23 +199,68 @@ const router = new VueRouter({
             component: Admin,
             mode: 'history',
             meta: {
-                breadCrumb: 'Dashboard' //crumb
+                breadcrumb: 'Admin' //crumb
             },
             children: [
+                
                 {
                     path: '',
                     component: AdminIndex,
                     meta: {
-                        breadCrumb: 'Admin' //crumb
+                        breadcrumb: 'Admin' //crumb
                     }
                 },
                 {
-                    path: 'form',
-                    component: FormIndex,
+                    path: 'forms',
+                    name: 'forms',
+                    component: Form,
                     meta: {
-                        breadCrumb: 'จัดการแบบฟอร์ม' //crumb
-                    }
-                }
+                        breadcrumb: 'จัดการแบบฟอร์ม' //crumb
+                    },
+                    redirect: {
+                        name: 'index'
+                    },
+                    children: [
+                        {
+                            path: '',
+                            name: 'index',
+                            component: FormIndex,
+                            meta: {
+                                breadcrumb: 'รายการแบบฟอร์ม'
+                            }
+                        },
+                        {
+                            path: 'add',
+                            name: 'add',
+                            component: FormEdit,
+                            meta: {
+                                breadcrumb: 'เพิ่ม'
+                            }
+                        },
+                        {
+                            name: 'edit',
+                            path: ':id',
+                            component: FormEdit,
+                            meta: {
+                                //breadcrumb: routeParameters => `แก้ไขแบบถอนคืนเงินรายได้ เลขที่ ${routeParameters.id}` //crumb
+                                breadcrumb: 'แบบฟอร์ม'
+                            },
+                            // redirect: {
+                            //     name: 'edit'
+                            // },
+                            // children: [{
+                            //     name: 'edit',
+                            //     path: 'edit',
+                            //     component: FormEdit,
+                            //     meta: {
+                            //         //breadcrumb: routeParameters => `แก้ไขแบบถอนคืนเงินรายได้ เลขที่ ${routeParameters.id}` //crumb
+                            //         breadcrumb: 'แก้ไขแบบฟอร์ม'
+                            //     },
+                            // }]
+                        }
+                    ]
+                },
+                
             ]
         }
     ]
@@ -308,9 +358,24 @@ Vue.component('ConsiderCheck', ConsiderCheck).defaults;
 
 import MyDatePicker from './components/MyDatePicker.vue';
 Vue.component('MyDatePicker', MyDatePicker).defaults;
+const store = new Vuex.Store({
+    plugins: [createPersistedState()],
+    state: {
+        forms: [],
+        form_count: []
+    },
+    mutations: {
+        SET_FORMS: (state, forms) =>{
+            state.forms = forms
+        }
+    }
+
+})
 
 const app = new Vue({
     el: '#app',
     components: { App },
-    router
+    router,
+    store
 });
+

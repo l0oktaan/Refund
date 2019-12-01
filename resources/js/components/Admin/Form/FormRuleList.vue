@@ -19,7 +19,7 @@
                         </ul>
                     </div>
                     <rule-cover
-                        v-for="rule in showRule"
+                        v-for="rule in rules"
                         :key="rule.id"
                         :rule="rule"
                         :form_id="form_id"
@@ -28,56 +28,7 @@
                         @fetchRule="fetchData"
                     >
                     </rule-cover>
-                    <b-table :items="rules" :fields="tableFileds" striped v-if="false">
-                        <template slot="row-details" slot-scope="data">
-                            <b-card-group deck>
-                                <b-card no-body>
-                                    <div slot="header" class="navbar">
-                                        <ul class="nav navbar-nav d-md-down-none">
-                                            <li class="nav-item px-3">
-                                                <i class='fa fa-align-justify'></i>
-                                                    หลักเกณฑ์ย่อย
-                                            </li>
-                                        </ul>
-                                        <ul class="nav navbar-nav ml-auto">
-                                            <li class="nav-item px-3">
-                                                <!-- <b-button variant="outline-success" @click="addRule">
-                                                    <i class="fas fa-plus-circle fa-2x"></i>&nbsp;<span>เพิ่มหลักเกณฑ์</span>
-                                                </b-button> -->
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <b-list-group flush>
-                                        <b-list-group-item v-for="rule in data.item.sub_rules" :key="rule.id">
-                                            <b-row>
-                                                <b-col sm="2">{{data.item.order + '.' + rule.order}}</b-col>
-                                                <b-col sm="4">{{rule.name}}</b-col>
-                                                <b-col sm="2">
-                                                    <div>
-                                                        <b-button variant="success" class="btn-square btn-sm" @click="editRule(rule.id,rule.sub_of)"><i class="fas fa-edit"></i></b-button>
-                                                        <b-button variant="danger" class="btn-square btn-sm"><i class="fas fa-trash"></i></b-button>
-                                                    </div>
-                                                </b-col>
-                                                <b-col>
-                                                    <b-button block variant="primary" class="btn-square btn-sm"><i class="far fa-check-circle"></i>&nbsp;เงื่อนไข</b-button>
-                                                </b-col>
-                                            </b-row>
-                                        </b-list-group-item>
-                                    </b-list-group>
-
-                                </b-card>
-                            </b-card-group>
-                        </template>
-                        <template slot="manage" slot-scope="data">
-                            <div>
-                                <b-button variant="success" class="btn-square btn-sm" @click="editRule(data.item.id)"><i class="fas fa-edit"></i></b-button>
-                                <b-button variant="danger" class="btn-square btn-sm"><i class="fas fa-trash"></i></b-button>
-                            </div>
-                        </template>
-                        <template slot="condition" slot-scope="data">
-                            <b-button block variant="primary" class="btn-square btn-sm" v-if="data.item.sub_rules.length == 0"><i class="far fa-check-circle"></i>&nbsp;เงื่อนไข</b-button>
-                        </template>
-                    </b-table>
+                    
                     <!--b-table striped hover :items="rules" :fields="tableFileds">
                         <template slot="index" slot-scope="data">
                             {{ data.index + 1 }}
@@ -114,10 +65,10 @@
             no-close-on-esc
             @hidden="resetModalRule"
             >
-            <form-rule
-                :form_id = "form_id"
+            <form-rule         
+                :state = "state"
+                :rules = "rules"
                 :rule_id = "rule_id"
-                :main_rule = "sub_of"
             ></form-rule>
         </b-modal>
 
@@ -139,12 +90,14 @@ export default {
 
         items: [],
         rules: [],
+        rule: {},
         fid: 0,
         rule_id: -1,
         sub_of: 0,
-        rCount: 0,
+        
         sub_rules:[],
         showRule: [],
+        state: ''
 
       }
     },
@@ -171,13 +124,14 @@ export default {
     },
     methods: {
         fetchData(){
-            var path = `/api/forms/${this.form_id}/form_rules?sub_of=0`;
+            var path = `/api/forms/${this.form_id}/form_rules`;
             console.log('path :' + path);
             var sub_rule = [];
             axios.get(path)
             .then(response=>{
                 this.rules = response.data.data;
-                this.getSubRule();
+                
+                //this.getSubRule();
                 this.$forceUpdate();
             })
             .catch(error=>{
@@ -187,40 +141,7 @@ export default {
 
 
 
-        },
-        getSubRule(){
-            var path = '';
-            var id = 0;
-            var sub_rule = [];
-
-            this.showRule =[];
-
-            console.log('get sub rule' + this.rules.length);
-            for (let i = 0 ; i < this.rules.length ; i++){
-                id = this.rules[i].id;
-                path = `/api/forms/${this.form_id}/form_rules?sub_of=${id}`;
-                console.log('get sub rule path :' + path);
-                Object.assign(this.rules[i],{sub_rules: sub_rule});
-                axios.get(path)
-                .then(response=>{
-                    sub_rule = response.data.data;
-                    console.log('sub rule ' + id + ': ' + sub_rule.length);
-
-                    if (sub_rule.length > 0){
-                        Object.assign(this.rules[i],{_showDetails: true});
-                        //this.rules[i] = _.extend({},this.rules[i],{_showDetails: true});
-                        //this.rules[i] = _.extend({},this.rules[i],{sub_rules: sub_rule});
-                        Object.assign(this.rules[i],{sub_rules: sub_rule});
-                        //return sub_rule;
-                    }
-                    this.showRule = this.rules;
-                    this.$forceUpdate();
-                })
-                .catch(error=>{
-
-                })
-            }
-        },
+        },        
 
 
         showDetail(row){
@@ -231,15 +152,12 @@ export default {
             this.rules = [];
         },
         editRule2(edit_rule){
-            this.rule_id = edit_rule.id;
-            this.sub_of = edit_rule.sub_of;
+            // this.rule_id = edit_rule.id;
+            // this.sub_of = edit_rule.sub_of;
+            this.state = "edit"            
+            this.rule = edit_rule;
             this.$refs['modalRule'].show();
-        },
-        editRule(id,sub_of=0){
-            this.sub_of = sub_of;
-            this.rule_id = id;
-            this.$refs['modalRule'].show();
-        },
+        },        
         addRule(){
             this.rule_id = 0;
             this.$refs['modalRule'].show();

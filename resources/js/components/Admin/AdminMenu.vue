@@ -50,7 +50,7 @@
 
 
 
-                            <b-nav-item  to="/admin/form"><i class="fa fa-align-justify" aria-hidden="true"></i>&nbsp;จัดการแบบฟอร์ม</b-nav-item>
+                            <b-nav-item  to="/admin/forms"><i class="fa fa-align-justify" aria-hidden="true"></i>&nbsp;จัดการแบบฟอร์ม</b-nav-item>
 </b-nav>
 
 
