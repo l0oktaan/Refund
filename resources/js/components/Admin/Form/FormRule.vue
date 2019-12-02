@@ -1,16 +1,16 @@
 <template>
 <div class="animated fadeIn">
     <my-alert :AlertType="alert"></my-alert>
-        <b-form @submit="onSubmit">
+        <b-form>
             <b-form-group>
                 <label for="name">ชื่อหลักเกณฑ์</label>
                 <b-form-input type="text"
                     placeholder="ชื่อหลักเกณฑ์"
                     name="name"
-                    v-model = "iRule.name"                    
+                    v-model = "iRule.name"
                     >
                 </b-form-input>
-                
+
             </b-form-group>
             <b-row>
                 <b-col sm="4">
@@ -21,7 +21,14 @@
                             name="ruleOption"
                             :disabled="status === 'update'"
                         ></b-form-radio-group>
+                        <b-form-input type="text"
+                            placeholder="ชื่อหลักเกณฑ์"
+                            name="name"
+                            v-model = "iRule.rule_type"
+                            >
+                        </b-form-input>
                     </b-form-group>
+
                 </b-col>
                 <b-col sm="8">
                     <b-form-group v-if="iRule.rule_type == 2" >
@@ -52,9 +59,9 @@
                     </b-form-group>
                 </b-col>
             </b-row>
-            
+            {{status}}
             <div class="text-center">
-                <b-button type="submit" variant="primary">บันทึกข้อมูล</b-button>
+                <b-button variant="primary" @click="toSubmit">บันทึกข้อมูล</b-button>
                 <b-button type="reset" variant="danger" @click="toCloseRule">ปิด</b-button>
             </div>
             <!-- <rule-consider v-if="state=='update'" :form_id="form_id" :rule_id="r_id"></rule-consider> -->
@@ -64,10 +71,15 @@
 
 <script>
 export default {
-    props: ['state','rules','rule_id'],
+    props: ['form_id','state','rules','rule_id'],
     data(){
         return {
-            iRule: {},
+            iRule: {
+                name: '',
+                rule_type: 0,
+                sub_of: 0,
+                order: 0
+            },
             alert: '',
             status: 'new',
             arr_rule_type: [
@@ -80,41 +92,124 @@ export default {
     },
     watch:{
         rule_id(){
-            if (this.rule_id >= 0){
-                if (this.rule_id == 0){
-                    //this.state = 'new';
-                    this.clearData();
-                    this.getMainRule();
-                    if (this.main_rule != 0){
-                    this.r_rule_type = 2;
-                    this.r_sub_of = this.main_rule;
-                }
-                }else{
-                    this.state = 'update';
-                    this.r_id = this.rule_id;
-                    this.getMainRule();
-                    this.fetchData();
-                }
+            this.create_main_rule();
+            this.create_rule_order();
+            if (this.rule_id > 0){
+                //this.delivery = _.cloneDeep(item);
+                this.status = "update"
+                this.iRule = _.cloneDeep(this.rules[this.rules.findIndex(i => i.id == this.rule_id)]);
+                this.$forceUpdate();
+            }else{
+                this.status = "new";
+            }
+        }
+    },
+    mounted(){
+        // this.create_main_rule();
+        // this.create_rule_order();
+        // if (this.rule_id > 0){
+        //         this.iRule = this.rules[this.rules.findIndex(i => i.id == this.rule_id)];
+        //         this.$forceUpdate();
+        // }
+    },
+
+    methods: {
+        toSubmit(){
+            //e.preventDefault();
+            var path = `/api/forms/${this.form_id}/form_rules`;
+            var rule = {};
+            console.log('update rule id:' + this.rule_id + ' ' + path + ' ' + this.status);
+            if (this.status == 'new'){
+                axios.post(path,{
+                    order: this.iRule.order,
+                    name: this.iRule.name,
+                    rule_type: this.iRule.rule_type,
+                    sub_of: (this.iRule.rule_type == 1) ? 1 : 2,
+                    result_type: 0,
+                    status: 1
+                })
+                .then(response=>{
+                    this.alert = "success"
+                    this.status = 'update';
+                    this.iRule = response.data.data;
+                    this.$emit("fetchRule");
+                })
+                .catch(error=>{
+                    this.alert = "error";
+                })
+            }else if (this.status == 'update'){
+                console.log('update rule id:' + this.rule_id);
+
+                path = `${path}/${this.rule_id}`;
+                axios.put(`${path}`,{
+                    order: this.iRule.order,
+                    name: this.iRule.name,
+
+                    sub_of: this.iRule.sub_of,
+                    rule_type: (this.iRule.sub_of == 0) ? 1 : 2,
+                    result_type: 0,
+                    status: 1
+                })
+                .then(response=>{
+                    this.alert = "success"
+                    this.status = 'update';
+                    this.iRule = response.data.data;
+                    this.$emit("fetchRule");
+                })
+                .catch(error=>{
+                    this.alert = "error";
+                })
             }
         },
-
-    },
-    
-    methods: {
         createArrayOrder(){
 
         },
-        fetData(){
+        fetchData(){
             this.createArrayOrder();
         },
         onSubmit(e){
             e.preventDefault();
         },
         toCloseRule(){
-            //this.clearData();
+            this.clearData();
             //this.$v.reset;
+            //this.$emit("toClose");
+            //this.$root.$emit('fetchRule');
             this.$root.$emit('bv::hide::modal','modalRule');
-            this.$root.$emit('fetchData');
+
+        },
+        create_rule_order(){
+            this.arr_rule_order = [];
+            var max = this.rules.length;
+            console.log('rules length : ' + this.rules.length);
+            if (this.state == 'new'){
+                max = max + 1;
+            }
+            this.arr_rule_order.push({value: 0,text: 'ลำดับ'});
+
+            for (let i=1 ; i <= max ; i++){
+                this.arr_rule_order.push({value: i, text: i});
+            }
+
+
+            this.$forceUpdate();
+        },
+        create_main_rule(){
+            this.arr_main_rule = [];
+            this.arr_main_rule.push({value: 0,text: 'หลักเกณฑ์หลัก'});
+            for (let i=0; i < this.rules.length; i++){
+                this.arr_main_rule.push({value: this.rules[i]['id'], text: this.rules[i]['name']});
+            }
+            this.$forceUpdate();
+        },
+        clearData(){
+            // this.iRule.name = '';
+            // this.iRule.rule_type = 0;
+            // this.iRule.sub_of = 0;
+            // this.iRule.order = 0;
+            // this.status = 'new';
+            this.iRule = {};
+
         }
     }
 }

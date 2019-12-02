@@ -1,7 +1,8 @@
 <template>
     <div class="animated fadeIn">
-        <b-row>
-             <b-col>
+        <b-row class="justify-content-md-center">
+
+             <b-col cols="8">
                  <b-card>
                      <div slot="header" class="navbar">
                          <ul class="nav navbar-nav d-md-down-none">
@@ -19,65 +20,28 @@
                         </ul>
                     </div>
                     <rule-cover
-                        v-for="rule in rules"
-                        :key="rule.id"
+                        ref="cover"
+                        v-for="rule in rules" :key="rule.id"
                         :rule="rule"
+                        :rules="rules"
                         :form_id="form_id"
                         @editRule="editRule2"
                         @addSubRule="addSubRule"
                         @fetchRule="fetchData"
                     >
                     </rule-cover>
-                    
-                    <!--b-table striped hover :items="rules" :fields="tableFileds">
-                        <template slot="index" slot-scope="data">
-                            {{ data.index + 1 }}
-                        </template>
-                        <template slot="show_details" slot-scope="row">
-                            <b-button size="sm" @click="row.toggleDetails" class="mr-2">
-                            {{ row.detailsShowing ? 'Hide' : 'Show'}} Details
-                            </b-button>
-
-
-
-
-                        </template>
-
-                        <template slot="manage" slot-scope="data">
-                            <div>
-                                <b-button variant="success" class="btn-square btn-sm" @click="editRule(data.item.id)"><i class="fas fa-edit"></i></b-button>
-                                <b-button variant="danger" class="btn-square btn-sm"><i class="fas fa-trash"></i></b-button>
-                            </div>
-                        </template>
-                        <template slot="condition" slot-scope="data">
-                            <b-button block variant="primary" class="btn-square btn-sm" v-if="data.item.rule_type!=1"><i class="far fa-check-circle"></i>&nbsp;เงื่อนไข</b-button>
-                        </template>
-                    </b-table-->
 
                  </b-card>
             </b-col>
         </b-row>
-        <b-modal id="modalRule"
-            ref="modalRule"
-            size="lg"
-            hide-header hideFooter
-            no-close-on-backdrop
-            no-close-on-esc
-            @hidden="resetModalRule"
-            >
-            <form-rule         
-                :state = "state"
-                :rules = "rules"
-                :rule_id = "rule_id"
-            ></form-rule>
-        </b-modal>
+
 
     </div>
 </template>
 <script>
-
+import {mapActions} from 'vuex'
 export default {
-    props : ['form_id'],
+    props : ['form_id','rules'],
     data() {
       return {
         // Note `isActive` is left out and will not appear in the rendered table
@@ -89,59 +53,44 @@ export default {
         ],
 
         items: [],
-        rules: [],
+
         rule: {},
         fid: 0,
         rule_id: -1,
         sub_of: 0,
-        
+
         sub_rules:[],
         showRule: [],
-        state: ''
+        state: 'new'
 
       }
     },
     mounted(){
-        this.rules = [];
-    },
-    watch: {
-        form_id(){
-            this.fid = this.form_id;
-            if (this.fid > 0){
-                this.fetchData();
-                //this.getSubRule();
+        // this.rules = [];
+        // this.fid = this.form_id;
+        //     if (this.fid > 0){
+        //         this.fetchData();
+        //         //this.getSubRule();
 
-            }else{
-                this.clearData();
-            }
-        },
-        rules(){
-
-        }
+        //     }else{
+        //         this.clearData();
+        //     }
     },
+
+
     computed: {
 
     },
     methods: {
+        ...mapActions([
+            'fetch_form'
+        ]),
         fetchData(){
-            var path = `/api/forms/${this.form_id}/form_rules`;
-            console.log('path :' + path);
-            var sub_rule = [];
-            axios.get(path)
-            .then(response=>{
-                this.rules = response.data.data;
-                
-                //this.getSubRule();
-                this.$forceUpdate();
-            })
-            .catch(error=>{
-                console.log(error);
-            })
-            //
+            this.fetch_form;
 
-
-
-        },        
+            this.$emit('toRefresh');
+            this.$forceUpdate();
+        },
 
 
         showDetail(row){
@@ -151,16 +100,16 @@ export default {
             this.fid = -1;
             this.rules = [];
         },
-        editRule2(edit_rule){
+        editRule2(rule_id){
             // this.rule_id = edit_rule.id;
             // this.sub_of = edit_rule.sub_of;
-            this.state = "edit"            
-            this.rule = edit_rule;
+            this.state = "edit"
+            this.rule_id = rule_id;
             this.$refs['modalRule'].show();
-        },        
+        },
         addRule(){
             this.rule_id = 0;
-            this.$refs['modalRule'].show();
+            this.$refs.cover.modalRule.show();
         },
         addSubRule(sub_of){
             this.rule_id = 0;

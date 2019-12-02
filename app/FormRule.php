@@ -15,9 +15,6 @@ class FormRule extends Model
         'sub_of',
         'rule_type',
         'result_type',
-        'condition',
-        'condition_type',
-        'description',
         'status'
     ];
 

@@ -1,9 +1,12 @@
 <template>
     <div class="animated fadeIn">
         <div class="text-right">
-            <b-button variant="outline-success" @click="showForm('add')">
+            <router-link to="/admin/forms/add">
+                <b-button variant="outline-success">
                 <i class="fas fa-plus-circle fa-2x"></i>&nbsp;<span>เพิ่มแบบฟอร์ม</span>
             </b-button>
+            </router-link>
+
             <b-button variant="outline-primary">
                 <i class="fas fa-search fa-2x"></i>&nbsp;<span>ค้นหา</span>
             </b-button>
@@ -31,10 +34,10 @@
             no-close-on-esc
             @hidden="resetModalForm"
             >
-            <form-detail
+            <!-- <form-detail
                 :form_id = "form_id"
                 :fCount = "fCount"
-            ></form-detail>
+            ></form-detail> -->
         </b-modal>
         <b-modal id="modalRule"
             ref="modalRule"
@@ -48,6 +51,7 @@
 
 </template>
 <script>
+import {mapActions} from 'vuex'
 export default {
     data(){
         return{
@@ -58,6 +62,9 @@ export default {
         }
     },
     methods: {
+        ...mapActions([
+            'fetch_form'
+        ]),
         showForm(id){
             //console.log('show :' + id);
             //this.form_id = id;
@@ -69,13 +76,16 @@ export default {
             this.fetchData();
         },
         fetchData(){
-            axios.get('/api/forms')
-            .then(response=>{
-                this.forms = response.data.data;
-                this.fCount = this.forms.length;
-                this.$store.commit('SET_FORMS',this.forms);
-                console.log(this.forms);
-            })
+            console.log('EMIT')
+            this.fetch_form();
+            this.forms = this.$store.state.forms;
+            // axios.get('/api/forms')
+            // .then(response=>{
+            //     this.forms = response.data.data;
+            //     this.fCount = this.forms.length;
+            //     this.$store.commit('SET_FORMS',this.forms);
+            //     console.log(this.forms);
+            // })
         }
     },
     mounted(){

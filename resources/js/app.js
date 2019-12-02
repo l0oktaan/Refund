@@ -103,8 +103,10 @@ import Admin from './views/Admin/Admin'
 import AdminIndex from './views/Admin/AdminIndex'
 
 import FormIndex from './views/Admin/Form/FormIndex'
-import FormEdit from './views/Admin/Form/FormEdit'
+
 import Form from './views/Admin/Form/Form'
+import FormEdit from './views/Admin/Form/FormEdit'
+import FormAdd from './views/Admin/Form/FormAdd'
 
 const router = new VueRouter({
     mode: 'history',
@@ -202,7 +204,7 @@ const router = new VueRouter({
                 breadcrumb: 'Admin' //crumb
             },
             children: [
-                
+
                 {
                     path: '',
                     component: AdminIndex,
@@ -232,35 +234,34 @@ const router = new VueRouter({
                         {
                             path: 'add',
                             name: 'add',
-                            component: FormEdit,
+                            component: FormAdd,
                             meta: {
                                 breadcrumb: 'เพิ่ม'
                             }
                         },
                         {
-                            name: 'edit',
                             path: ':id',
+                            name: 'detail',
+
+                            component: FormDetail,
+                            meta: {
+                                breadcrumb: 'รายละเอียดแบบฟอร์ม'
+                            }
+                        },
+                        {
+                            path: ':id/edit',
+                            name: 'edit',
                             component: FormEdit,
                             meta: {
                                 //breadcrumb: routeParameters => `แก้ไขแบบถอนคืนเงินรายได้ เลขที่ ${routeParameters.id}` //crumb
-                                breadcrumb: 'แบบฟอร์ม'
+                                breadcrumb: 'แก้ไขแบบฟอร์ม'
                             },
-                            // redirect: {
-                            //     name: 'edit'
-                            // },
-                            // children: [{
-                            //     name: 'edit',
-                            //     path: 'edit',
-                            //     component: FormEdit,
-                            //     meta: {
-                            //         //breadcrumb: routeParameters => `แก้ไขแบบถอนคืนเงินรายได้ เลขที่ ${routeParameters.id}` //crumb
-                            //         breadcrumb: 'แก้ไขแบบฟอร์ม'
-                            //     },
-                            // }]
+
                         }
+
                     ]
                 },
-                
+
             ]
         }
     ]
@@ -362,11 +363,23 @@ const store = new Vuex.Store({
     plugins: [createPersistedState()],
     state: {
         forms: [],
-        form_count: []
+        form_count: 0
     },
     mutations: {
         SET_FORMS: (state, forms) =>{
             state.forms = forms
+        },
+        FETCH_FORM: (state)=>{
+            var path = `/api/forms`;
+            axios.get(`${path}`)
+            .then(response=>{
+                state.forms = response.data.data;
+            })
+        }
+    },
+    actions: {
+        fetch_form: ({commit}) => {
+            commit('FETCH_FORM');
         }
     }
 
