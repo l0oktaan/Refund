@@ -2,7 +2,7 @@
     <div class="animated fadeIn">
         <form-detail :form_id="form_id"></form-detail>
 
-        <form-rule-list :form_id="form_id" :rules="rules" @toRefresh="fetchData"></form-rule-list>
+        <form-rule-list :form_id="form_id" @toRefresh="fetchData"></form-rule-list>
     </div>
 </template>
 

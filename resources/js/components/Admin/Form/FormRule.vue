@@ -21,12 +21,6 @@
                             name="ruleOption"
                             :disabled="status === 'update'"
                         ></b-form-radio-group>
-                        <b-form-input type="text"
-                            placeholder="ชื่อหลักเกณฑ์"
-                            name="name"
-                            v-model = "iRule.rule_type"
-                            >
-                        </b-form-input>
                     </b-form-group>
 
                 </b-col>
@@ -124,7 +118,7 @@ export default {
                     order: this.iRule.order,
                     name: this.iRule.name,
                     rule_type: this.iRule.rule_type,
-                    sub_of: (this.iRule.rule_type == 1) ? 1 : 2,
+                    sub_of: (this.iRule.rule_type == 1) ? 0 : this.iRule.sub_of,
                     result_type: 0,
                     status: 1
                 })
@@ -144,10 +138,6 @@ export default {
                 axios.put(`${path}`,{
                     order: this.iRule.order,
                     name: this.iRule.name,
-
-                    sub_of: this.iRule.sub_of,
-                    rule_type: (this.iRule.sub_of == 0) ? 1 : 2,
-                    result_type: 0,
                     status: 1
                 })
                 .then(response=>{

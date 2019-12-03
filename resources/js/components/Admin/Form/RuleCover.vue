@@ -1,6 +1,6 @@
 <template>
     <div class="animated fadeIn">
-        <div>
+        <div v-for="(rule,index) in rules" :key="index" >
             <b-card no-body class="bg-primary">
                 <b-card-body class="pb-0">
 
@@ -102,6 +102,13 @@ export default {
         fetchData(){
             this.$emit("fetchRule");
             this.$forceUpdate();
+        },
+        newRule(){
+            this.fetchData();
+            this.c_rule_id = 0;
+            this.state = 'new';
+
+            this.$refs['modalRule'].show();
         },
         editRule(id){
             this.c_rule_id = id;
