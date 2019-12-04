@@ -1,7 +1,7 @@
 <template>
 <div class="animated fadeIn">
     <my-alert :AlertType="alert"></my-alert>
-        <b-form>
+        <b-form >
             <b-form-group>
                 <label for="name">ชื่อหลักเกณฑ์</label>
                 <b-form-input type="text"
@@ -19,27 +19,27 @@
                             v-model="iRule.rule_type"
                             :options="arr_rule_type"
                             name="ruleOption"
-                            :disabled="status === 'update'"
+                            :disabled="state == 'update' || sub_of != 0"
                         ></b-form-radio-group>
                     </b-form-group>
 
                 </b-col>
                 <b-col sm="8">
-                    <b-form-group v-if="iRule.rule_type == 2" >
+                    <b-form-group v-if="iRule.rule_type == 2">
                         <label for="mainRule">หลักเกณฑ์หลัก</label>
                         <b-form-select
                             v-model="iRule.sub_of"
                             :plain="true"
                             name="mainRule"
                             :options="arr_main_rule"
-                            :disabled="status === 'update'"
+                            :disabled="state == 'update' || sub_of != 0"
                         >
                         </b-form-select>
                     </b-form-group>
                 </b-col>
             </b-row>
             <b-row>
-                <b-col sm="4">
+                <b-col sm="4" >
                     <b-form-group>
                         <label for="order">ลำดับหลักเกณฑ์</label>
                         <b-form-select
@@ -49,65 +49,81 @@
                             :options="arr_rule_order"
                         >
                         </b-form-select>
-
                     </b-form-group>
                 </b-col>
             </b-row>
-            {{status}}
+
             <div class="text-center">
                 <b-button variant="primary" @click="toSubmit">บันทึกข้อมูล</b-button>
                 <b-button type="reset" variant="danger" @click="toCloseRule">ปิด</b-button>
             </div>
-            <!-- <rule-consider v-if="state=='update'" :form_id="form_id" :rule_id="r_id"></rule-consider> -->
+            <rule-consider v-if="status=='update'" :form_id="form_id" :rule_id="r_id"></rule-consider>
         </b-form>
-</div>
+    </div>
 </template>
 
 <script>
+
 export default {
-    props: ['form_id','state','rules','rule_id'],
+    props: ['form_id','rules','rule_id','sub_of','state'],
     data(){
         return {
+            status: 'new',
+            r_id: -1,
             iRule: {
                 name: '',
                 rule_type: 0,
                 sub_of: 0,
                 order: 0
             },
-            alert: '',
-            status: 'new',
+            rules_count: 0,
             arr_rule_type: [
                 {value: 1, text: 'หลักเกณฑ์หลัก'},
                 {value: 2, text: 'หลักเกณฑ์ย่อย'}
             ],
             arr_main_rule: [],
             arr_rule_order: [],
+            alert: ''
         }
     },
-    watch:{
-        rule_id(){
-            this.create_main_rule();
-            this.create_rule_order();
-            if (this.rule_id > 0){
-                //this.delivery = _.cloneDeep(item);
-                this.status = "update"
-                this.iRule = _.cloneDeep(this.rules[this.rules.findIndex(i => i.id == this.rule_id)]);
+    watch: {
+        rule_id(newVal,oldVar){
+            if (newVal > 0){
+                this.getRule();
+            }
+        },
+
+        'iRule.rule_type' : function(newVal,oldVal){
+            if (newVal == 1){
+                this.create_rule_order();
+            }else if (newVal == 2) {
+                this.arr_rule_order = [];
+                this.create_main_rule();
+            }
+        },
+        'iRule.sub_of' : function(newVal,oldVal){
+            if (newVal > 0){
+                this.getRulesCount(newVal);
+                this.create_rule_order(newVal);
                 this.$forceUpdate();
             }else{
-                this.status = "new";
+                this.arr_rule_order = [];
             }
+
+
         }
     },
-    mounted(){
-        // this.create_main_rule();
-        // this.create_rule_order();
-        // if (this.rule_id > 0){
-        //         this.iRule = this.rules[this.rules.findIndex(i => i.id == this.rule_id)];
-        //         this.$forceUpdate();
-        // }
-    },
-
     methods: {
+        onLoad(){
+            // this.create_main_rule();
+            // this.create_rule_order(this.r_id);
+            // if (this.state == 'new'){
+            //     this.iRule.name = '';
+            //     this.iRule.rule_type = 0;
+            //     this.iRule.sub_of = 0;
+            //     this.iRule.order = 0;
+            // }
+        },
         toSubmit(){
             //e.preventDefault();
             var path = `/api/forms/${this.form_id}/form_rules`;
@@ -126,6 +142,7 @@ export default {
                     this.alert = "success"
                     this.status = 'update';
                     this.iRule = response.data.data;
+                    this.r_id = this.iRule.id;
                     this.$emit("fetchRule");
                 })
                 .catch(error=>{
@@ -144,6 +161,7 @@ export default {
                     this.alert = "success"
                     this.status = 'update';
                     this.iRule = response.data.data;
+                    this.r_id = this.iRule.id;
                     this.$emit("fetchRule");
                 })
                 .catch(error=>{
@@ -151,28 +169,30 @@ export default {
                 })
             }
         },
-        createArrayOrder(){
-
+        getRule(){
+            if (this.sub_of == 0){
+                    this.iRule = _.cloneDeep(this.rules[this.rules.findIndex(i => i.id == this.r_id)]);
+                    this.rules_count = this.rules.length;
+                }else{
+                    var rule =  _.cloneDeep(this.rules[this.rules.findIndex(i => i.id == this.sub_of)]['sub_rules']);
+                    this.rules_count = rule.length;
+                    this.iRule = _.cloneDeep(rule[rule.findIndex(i => i.id == this.r_id)]);
+                }
         },
-        fetchData(){
-            this.createArrayOrder();
+        getRulesCount(id = 0){
+            if (id > 0){
+                var rule =  _.cloneDeep(this.rules[this.rules.findIndex(i => i.id ==id)]['sub_rules']);
+                return  rule.length;
+            }else{
+                return this.rules.length;
+            }
         },
-        onSubmit(e){
-            e.preventDefault();
-        },
-        toCloseRule(){
-            this.clearData();
-            //this.$v.reset;
-            //this.$emit("toClose");
-            //this.$root.$emit('fetchRule');
-            this.$root.$emit('bv::hide::modal','modalRule');
-
-        },
-        create_rule_order(){
+        create_rule_order(id = 0){
             this.arr_rule_order = [];
-            var max = this.rules.length;
-            console.log('rules length : ' + this.rules.length);
-            if (this.state == 'new'){
+            var max = this.getRulesCount(id);
+
+            console.log('rules length : ' + this.rules_count + ' : ' + this.rules.length);
+            if (this.status == 'new'){
                 max = max + 1;
             }
             this.arr_rule_order.push({value: 0,text: 'ลำดับ'});
@@ -180,7 +200,6 @@ export default {
             for (let i=1 ; i <= max ; i++){
                 this.arr_rule_order.push({value: i, text: i});
             }
-
 
             this.$forceUpdate();
         },
@@ -192,14 +211,20 @@ export default {
             }
             this.$forceUpdate();
         },
-        clearData(){
-            // this.iRule.name = '';
-            // this.iRule.rule_type = 0;
-            // this.iRule.sub_of = 0;
-            // this.iRule.order = 0;
-            // this.status = 'new';
-            this.iRule = {};
+        toCloseRule(){
+            this.clearData();
+            this.$root.$emit('bv::hide::modal','modalRule');
 
+        },
+        clearData(){
+            this.arr_main_rule = [];
+            this.arr_rule_order = [];
+            this.status = 'new';
+            this.rid = -1;
+            this.iRule.name = '';
+            this.iRule.order = 0;
+            this.iRule.rule_type = 0;
+            this.iRule.sub_of = 0;
         }
     }
 }

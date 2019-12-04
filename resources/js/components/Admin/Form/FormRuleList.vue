@@ -7,7 +7,7 @@
                          <ul class="nav navbar-nav d-md-down-none">
                             <li class="nav-item px-3">
                                 <i class='fa fa-align-justify'></i>
-                                    หลักเกณฑ์เงื่อนไข
+                                    หลักเกณฑ์เงื่อนไข {{rule_id}}
                             </li>
                         </ul>
                         <ul class="nav navbar-nav ml-auto">
@@ -29,6 +29,7 @@
                         @fetchRule="fetchData"
                     >
                     </rule-cover> -->
+
                     <div v-for="(rule,index) in rules" :key="index">
                         <b-card no-body class="bg-primary">
                             <b-card-body class="pb-0 cover">
@@ -75,7 +76,7 @@
                                 <template slot="button-content">
                                     <i class="icon-settings sub_rule"></i>
                                 </template>
-                                    <b-dropdown-item @click="editRule(sub_rule.id)"><i class="fas fa-edit"></i>&nbsp;แก้ไขหลักเกณฑ์ย่อย</b-dropdown-item>
+                                    <b-dropdown-item @click="editSubRule(sub_rule.sub_of, sub_rule.id)"><i class="fas fa-edit"></i>&nbsp;แก้ไขหลักเกณฑ์ย่อย</b-dropdown-item>
                                     <!--b-dropdown-item @click="showCondition(sub_rule.id)"><i class="fas fa-link"></i>&nbsp;ข้อมูลเงื่อนไข</b-dropdown-item-->
                                     <b-dropdown-item @click="delRule(sub_rule.id)"><i class="fas fa-trash"></i>&nbsp;ลบหลักเกณฑ์ย่อย</b-dropdown-item>
                                 </b-dropdown>
@@ -107,7 +108,8 @@
                 :form_id = "form_id"
                 :state = "state"
                 :rules = "rules"
-                :rule_id = "c_rule_id"
+                :rule_id = "rule_id"
+                :sub_of = "sub_of"
                 @fetchRule = "fetchData"
             ></form-rule>
         </b-modal>
@@ -127,25 +129,20 @@ export default {
             {key:'manage', label:'จัดการ'},
             {key:'condition', label:'เงื่อนไข'}
         ],
-
-
         forms: [],
         rules: {},
         rule: {},
         fid: 0,
         rule_id: -1,
         sub_of: 0,
-
-
         showRule: [],
         state: 'new',
         arrResultType: [
-                {value : 1, text: 'หรือ'},
-                {value : 2, text: 'และ'}
-            ],
-            showSub: false,
-            c_rule_id: 0,
-            state: 'new'
+            {value : 1, text: 'หรือ'},
+            {value : 2, text: 'และ'}
+        ],
+        showSub: false,
+        state: 'new'
 
       }
     },
@@ -177,26 +174,41 @@ export default {
             this.fid = -1;
             this.rules = [];
         },
-        editRule2(rule_id){
-            // this.rule_id = edit_rule.id;
-            // this.sub_of = edit_rule.sub_of;
-            this.state = "edit"
+        editRule(rule_id){
+            //this.fetchData();
+            this.state = 'update'
+            this.sub_of = 0;
             this.rule_id = rule_id;
+            this.$forceUpdate();
+            this.$refs['modalRule'].show();
+        },
+        editSubRule(sub_of,rule_id){
+            //this.fetchData();
+            this.state = 'update'
+            this.sub_of = sub_of;
+            this.rule_id = rule_id;
+            this.$forceUpdate();
             this.$refs['modalRule'].show();
         },
         addRule(){
-            this.fetch_form();
+            //this.fetchData();
             this.rule_id = 0;
-            this.$children[1].newRule();
+            this.sub_of = 0;
+            this.state = 'new';
+            this.$refs['modalRule'].show();
         },
         addSubRule(sub_of){
+            //this.fetchData();
             this.rule_id = 0;
             this.sub_of = sub_of;
+            this.state = 'new';
             this.$refs['modalRule'].show();
         },
         resetModalRule(){
-            this.rule_id = -1;
+            this.rule_id = 0;
             this.sub_of = 0;
+            this.state = 'new';
+
             this.fetchData();
         },
         isSingleRule(id){
@@ -208,20 +220,35 @@ export default {
                     return true;
                 }
             }
-            // var path = `/api/forms/${this.form_id}/form_rules?sub_of=${id}`;
-            // var rules = [];
-            // axios.get(path)
-            // .then(response=>{
-            //     rules = response.data.data;
 
-            //     if (rules.length == 0){
-            //         console.log('rule id :' + id + 'is single');
-            //         return true;
-            //     }else{
-            //         return false;
-            //     }
-            // })
-        }
+        },
+        delRule(id){
+            this.$swal({
+                title: "กรุณายืนยันการลบหลักเกณฑ์",
+                text: "หากยืนยันการลบ หลักเกณฑ์ย่อยและเงื่อนไขจะถูกลบไปด้วย",
+                icon: "error",
+                closeOnClickOutside: false,
+                buttons: [
+                    'ยกเลิก',
+                    'ยืนยัน'
+                ],
+
+            }).then(isConfirm =>{
+                if (isConfirm){
+                    let path = `/api/forms/${this.form_id}/form_rules/${id}`;
+                    console.log('Path Delete : ' + path);
+                    axios.delete(path)
+                    .then(response=>{
+                        this.rule_id = 0;
+                        this.sub_of = 0;
+                        this.state = 'new';
+                        this.$emit('toRefresh');
+                        this.fetchData();
+                    })
+                }
+
+            });
+        },
     }
 }
 </script>
